@@ -13,7 +13,7 @@ function normalizePath(filePath: string) {
   return filePath
     .replace("./pages", "")
     .replace("/home", "")
-    .replace("index.tsx", "") || "/"
+    .replace("/index.tsx", "") || "/"
   }
 
 function App() {
@@ -24,6 +24,7 @@ const [path, setPath] = useState(window.location.pathname)
         window.addEventListener("popstate", onPopState)
         return () => window.removeEventListener("popstate", onPopState)
     }, [])
+
 
     const Page = Object.entries(pages).find(
         ([file]) => normalizePath(file) === path
