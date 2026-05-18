@@ -26,15 +26,12 @@ const [path, setPath] = useState(window.location.pathname)
     }, [])
 
     const Page = Object.entries(pages).find(
-        ([file]) => {
-          const no_file_path = normalizePath(file)
-          console.log(`Comparing ${no_file_path} with ${path}`)
-          return no_file_path === path 
-        }
-        
+        ([file]) => normalizePath(file) === path
     )?.[1].default
 
-    return Page ? <Page/> : <h1>エラー</h1>
+    const NotFound = pages["./pages/notFound/index.tsx"].default
+
+    return Page ? <Page/> : <NotFound/>
 }
 
 export default App
