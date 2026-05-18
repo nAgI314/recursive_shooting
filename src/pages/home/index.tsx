@@ -1,7 +1,10 @@
+import styles from "./index.module.scss"
+
 const Home = () => {
     return (
-        <div>
-            <h1>Home</h1>
+        <div className={styles.layout}>
+            <div className={styles.stage}>
+            </div>
         </div>
     )
 }
