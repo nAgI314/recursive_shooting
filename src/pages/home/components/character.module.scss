@@ -1,0 +1,97 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.leftEye {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+
+    grid-row: 3/5;
+    grid-column: 3/5;
+}
+
+.rightEye {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    grid-row: 3/5;
+    grid-column: 7/9;
+}
+
+.leftArm {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    grid-row: 7;
+    grid-column: 2;
+    animation: moveLeftArm 0.5s steps(2) infinite alternate;
+}
+
+.rightArm {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    grid-row: 7;
+    grid-column: 9;
+    animation: moveRightArm 0.5s steps(2) infinite alternate;
+}
+
+.leftLeg {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    grid-row: 10;
+    grid-column: 3/5;
+    animation: moveLeftLeg 0.5s steps(2) infinite alternate;
+}
+
+.rightLeg {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    grid-row: 10;
+    grid-column: 7/9;
+    animation: moveRightLeg 0.5s steps(2) infinite alternate;
+}
+
+@keyframes moveLeftArm {
+    from {
+        grid-row:7;
+    }
+    to {
+        grid-row:6;
+    }
+}
+
+@keyframes moveRightArm {
+    from {
+        grid-row:6;
+    }
+    to {
+        grid-row:7;
+    }
+}
+
+@keyframes moveLeftLeg {
+    from {
+        grid-row:9;
+    }
+    to {
+        grid-row:10;
+    }
+}
+
+@keyframes moveRightLeg {
+    from {
+        grid-row:10;
+    }
+    to {
+        grid-row:9;
+    }
+}
