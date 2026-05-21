@@ -1,13 +1,13 @@
-import { Pixel } from "./components/pixel"
+import { Player } from "./components/player"
 import styles from "./index.module.scss"
+import type { Coordinate } from "./lib/type"
 
 const Home = () => {
-    const firstPosition = { x: 3, y: 2 }
+    const firstPosition: Coordinate = { x: 3, y: 2 }
     return (
         <div className={styles.layout}>
             <div className={styles.stage}>
-                <Pixel firstPosition={firstPosition} isPlayer={true} />
-                <Pixel firstPosition={firstPosition} isPlayer={false} />
+                <Player firstPosition={firstPosition} />
             </div>
         </div>
     )
