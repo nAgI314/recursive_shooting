@@ -1,4 +1,4 @@
-import styles from "./character.module.scss"
+import styles from "./PlayerSprite.module.scss"
 
 export const Character = () => {
     return (

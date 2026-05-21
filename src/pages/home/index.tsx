@@ -1,4 +1,4 @@
-import { Player } from "./components/player"
+import { Player } from "./components/player/player"
 import styles from "./index.module.scss"
 import type { Coordinate } from "./lib/type"
 

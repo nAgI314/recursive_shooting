@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Character } from "./character";
-import { Pixel } from "./pixel";
-import type { Coordinate } from "../lib/type";
+import { Character } from "./PlayerSprite";
+import { Pixel } from "../pixel";
+import type { Coordinate } from "../../lib/type";
 
 type PlayerProps = {
     firstPosition: Coordinate
