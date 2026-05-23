@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Character } from "./PlayerSprite";
+import { PlayerSprite } from "./PlayerSprite";
 import { Pixel } from "../pixel";
 import type { Coordinate } from "../../lib/type";
 
@@ -49,7 +49,7 @@ export const Player = ({ firstPosition }: PlayerProps) => {
 
     return (
         <Pixel position={pos}>
-            <Character />
+            <PlayerSprite />
         </Pixel>
     );
 };
