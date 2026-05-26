@@ -1,24 +1,28 @@
 import * as v from "valibot";
-import type { PlayerEntity } from "../game/entities/player";
-import type { EnemyEntity } from "../game/entities/enemy";
-import type { BulletEntity } from "../game/entities/bullet";
-import type { ObstacleEntity } from "../game/entities/obstacle";
-
-const coordinateSchema = v.object({
-    x: v.number(),
-    y: v.number(),
-})
-
-export type Coordinate = v.InferOutput<typeof coordinateSchema>
-
-export type Direction = "up" | "down" | "left" | "right"
+import { playerEntitySchema, type PlayerEntity } from "../game/entities/player";
+import { enemyEntitySchema, type EnemyEntity } from "../game/entities/enemy";
+import { bulletEntitySchema, type BulletEntity } from "../game/entities/bullet";
+import { obstacleEntitySchema, type ObstacleEntity } from "../game/entities/obstacle";
+import { coordinateSchema } from "./baseType";
 
 const pixelSchema = v.object({
     coordinate: coordinateSchema,
     color: v.string(),
 })
 
+export type EntityType = "player" | "enemy" | "bullet" | "obstacle"
+
 export type Pixel = v.InferOutput<typeof pixelSchema>
+
+export const stageSchema = v.object({
+  player: playerEntitySchema,
+
+  enemies: v.array(enemyEntitySchema),
+
+  bullets: v.array(bulletEntitySchema),
+
+  obstacles: v.array(obstacleEntitySchema),
+})
 
 export type Stage = {
     player: PlayerEntity,

@@ -1,11 +1,12 @@
-import type { Coordinate } from "../../lib/type"
+import * as v from "valibot";
+import { coordinateSchema } from "../../lib/baseType"
 
-export type ObstacleEntity = {
-    id: string
-    type: "obstacle"
+export const obstacleEntitySchema = v.object({
+    id: v.string(),
+    type: v.literal("obstacle"),
+    position: coordinateSchema,
+    breakable: v.boolean(),
+    hp: v.nullable(v.number()),
+})
 
-    position: Coordinate
-
-    breakable: boolean
-    hp: number|null
-}
+export type ObstacleEntity = v.InferOutput<typeof obstacleEntitySchema>

@@ -1,14 +1,13 @@
-import type { Coordinate, Direction } from "../../lib/type"
+import * as v from "valibot";
+import { coordinateSchema, directionSchema } from "../../lib/baseType"
 
-export type BulletEntity = {
-    id: string
-    type: "bullet"
+export const bulletEntitySchema = v.object({
+    id: v.string(),
+    type: v.literal("bullet"),
+    position: coordinateSchema,
+    direction: directionSchema,
+    speed: v.number(),
+    ownerId: v.string(),
+})
 
-    position: Coordinate
-
-    direction: Direction
-
-    speed: number
-
-    ownerId: string
-}
+export type BulletEntity = v.InferOutput<typeof bulletEntitySchema>

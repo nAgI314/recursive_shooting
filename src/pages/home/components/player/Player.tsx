@@ -1,42 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { PlayerSprite } from "./PlayerSprite";
 import { Pixel } from "../pixel";
-import type { Coordinate } from "../../lib/type";
+import type { Coordinate, Direction} from "../../lib/baseType";
+import { movePosition } from "../../game/systems/movement";
 
 type PlayerProps = {
-    firstPosition: Coordinate
+    position: Coordinate
+    onMove?: (newPosition: Coordinate) => void
 };
 
-export const Player = ({ firstPosition }: PlayerProps) => {
-    const [pos, setPos] = useState(firstPosition);
+type keyDirectionMap = {
+    [key: string]: Direction
+}
 
+const keyDirection: keyDirectionMap = {
+    "ArrowUp": "up",
+    "ArrowDown": "down",
+    "ArrowLeft": "left",
+    "ArrowRight": "right"
+}
+
+export const Player = ({ position, onMove }: PlayerProps) => {
     useEffect(() => {
         const handleKeyDown = (evt: KeyboardEvent) => {
-            switch (evt.key) {
-                case "ArrowUp":
-                    setPos((prev) => ({
-                        ...prev,
-                        y: Math.max(1, prev.y - 1),
-                    }));
-                    break;
-                case "ArrowDown":
-                    setPos((prev) => ({
-                        ...prev,
-                        y: Math.min(10, prev.y + 1),
-                    }));
-                    break;
-                case "ArrowLeft":
-                    setPos((prev) => ({
-                        ...prev,
-                        x: Math.max(1, prev.x - 1),
-                    }));
-                    break;
-                case "ArrowRight":
-                    setPos((prev) => ({
-                        ...prev,
-                        x: Math.min(10, prev.x + 1),
-                    }));
-                    break;
+            const direction = keyDirection[evt.key];
+            if (direction) {
+                onMove?.(movePosition(position, direction));
             }
         };
 
@@ -45,11 +34,12 @@ export const Player = ({ firstPosition }: PlayerProps) => {
         return () => {
             document.removeEventListener("keydown", handleKeyDown);
         };
-    }, []);
+    }, [position, onMove]);
 
     return (
-        <Pixel position={pos}>
+        <Pixel position={position}>
             <PlayerSprite />
         </Pixel>
     );
 };
+                  

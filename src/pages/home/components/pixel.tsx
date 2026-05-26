@@ -1,4 +1,4 @@
-import type { Coordinate } from "../lib/type";
+import type { Coordinate } from "../lib/baseType";
 import styles from "./pixel.module.scss"
 
 type PixelProps = {

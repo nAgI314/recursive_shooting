@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Coordinate } from "../../../lib/type";
+import type { Coordinate } from "../../../lib/baseType";
 import { Pixel } from "../../pixel";
 import { NormalEnemySprite } from "./NormalEnemySprite";
 
