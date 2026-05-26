@@ -15,6 +15,9 @@ export type EntityType = "player" | "enemy" | "bullet" | "obstacle"
 export type Pixel = v.InferOutput<typeof pixelSchema>
 
 export const stageSchema = v.object({
+  width: v.number(),
+  height: v.number(),
+
   player: playerEntitySchema,
 
   enemies: v.array(enemyEntitySchema),
@@ -25,6 +28,8 @@ export const stageSchema = v.object({
 })
 
 export type Stage = {
+    width: number,
+    height: number,
     player: PlayerEntity,
     enemies: EnemyEntity[],
     bullets: BulletEntity[],

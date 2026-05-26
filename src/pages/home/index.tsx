@@ -21,7 +21,7 @@ const Home = () => {
 
     return (
         <div className={styles.layout}>
-            <div className={styles.stage}>
+            <div className={styles.stage} style={{gridTemplateColumns:`repeat(${mockStage.width}, 1fr)`,gridTemplateRows:`repeat(${mockStage.height}, 1fr)`}}>
                 <Player position={player.position} onMove={(newPosition) => setPlayer({...player, position: newPosition})} />
                 <NormalEnemy firstPosition={{ x: 7, y: 8 }} />
             </div>
