@@ -12,3 +12,20 @@ export const checkCollision = (
 ): boolean => {
     return position1.x === position2.x && position1.y === position2.y;
 };
+
+/**
+ * 外壁との衝突を判定する関数
+ * @param position 判定する座標
+ * @param gridSize グリッドのサイズ
+ */
+export const checkWallCollision = (
+    position: Coordinate,
+    gridSize: Coordinate,
+): boolean => {
+    return (
+        position.x < 0 ||
+        position.x > gridSize.x ||
+        position.y < 0 ||
+        position.y > gridSize.y
+    );
+};

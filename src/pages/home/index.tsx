@@ -9,6 +9,7 @@ import type { EnemyEntity } from "./game/entities/enemy";
 import type { PlayerEntity } from "./game/entities/player";
 import type { ObstacleEntity } from "./game/entities/obstacle";
 import type { BulletEntity } from "./game/entities/bullet";
+import { checkWallCollision } from "./game/systems/collision";
 
 const Home = () => {
     const mockStage =v.parse(stageSchema, MockStage)
@@ -19,10 +20,17 @@ const Home = () => {
     const [bullets, setBullets] = useState<BulletEntity[]>(mockStage.bullets)
     const [obstacles, setObstacles] = useState<ObstacleEntity[]>(mockStage.obstacles)
 
+    const movePlayer = (newPosition: { x: number, y: number }) => {
+        // ステージの範囲外に移動しないようにする
+        if (checkWallCollision(newPosition, { x: mockStage.width, y: mockStage.height })) {
+            return
+        }
+        setPlayer({ ...player, position: newPosition })
+    }
     return (
         <div className={styles.layout}>
             <div className={styles.stage} style={{gridTemplateColumns:`repeat(${mockStage.width}, 1fr)`,gridTemplateRows:`repeat(${mockStage.height}, 1fr)`}}>
-                <Player position={player.position} onMove={(newPosition) => setPlayer({...player, position: newPosition})} />
+                <Player position={player.position} onMove={movePlayer} />
                 <NormalEnemy firstPosition={{ x: 7, y: 8 }} />
             </div>
         </div>
